@@ -71,7 +71,7 @@ jobs:
           sed -i -e 's/0011323D47F7"/&,\n\t"mac2": "0011323D47F8",\n\t"netif_num": 2/' ${{matrix.platform}}_user_config.json
 
           # 调整synoinfo
-          sed -i -e 's/"synoinfo": {},/"synoinfo": {\n\t"maxlanport": "2"\n    },/' ${{matrix.platform}}_user_config.json
+          sed -i -e 's/"synoinfo": {},/"synoinfo": {\n\t"maxlanport": "4"\n    },/' ${{matrix.platform}}_user_config.json
 
           cat ${{matrix.platform}}_user_config.json
 
@@ -81,6 +81,8 @@ jobs:
           ./redpill_tool_chain.sh add https://github.com/tossp/redpill-tool-chain/raw/master/extensions/redpill-boot-wait.json
           ./redpill_tool_chain.sh add https://github.com/tossp/redpill-tool-chain/raw/master/extensions/redpill-acpid.json
           ./redpill_tool_chain.sh add https://github.com/tossp/redpill-tool-chain/raw/master/extensions/redpill-virtio.json
+          ./redpill_tool_chain.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/igbvf/releases/igbvf-3.10.108.tgz
+          ./redpill_tool_chain.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/igb/releases/igb-3.10.108.tgz
 
       - name: 添加扩展驱动[dva3221]
         if: matrix.platform == 'dva3221'
